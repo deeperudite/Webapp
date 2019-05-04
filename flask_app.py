@@ -19,7 +19,7 @@ class ASAGGrader(Resource):
         if 'model' in request.args:
             mf = request.args.get('model', None)
         grade = model(q,ra,sa,mf)
-        return {'grade':grade}
+        return {'quest':q,'ref_ans':ra,'stu_ans':sa,'grade':grade}
 
 api.add_resource(ASAGGrader, '/')
 
