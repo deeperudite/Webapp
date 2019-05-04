@@ -1,4 +1,5 @@
 from sklearn.externals import joblib
+import numpy as np
 
 def model(q,ra,sa,mtype):
     # # add preprocessing calls here
