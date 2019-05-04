@@ -8,18 +8,18 @@ api = Api(app)
 CORS(app)
 
 class ASAGGrader(Resource):
-    def get(self):
+    def post(self):
         q,ra,sa,mf = "","","",""
-        if 'quest' in request.args:
-            q = request.args.get('quest', None)
-        if 'ref_ans' in request.args:
-            ra = request.args.get('ref_ans', None)
-        if 'stu_ans' in request.args:
-            sa = request.args.get('stu_ans', None)
-        if 'model' in request.args:
-            mf = request.args.get('model', None)
+        content = request.get_json()
+        try:
+            q = content['quest']
+            ra = content['ref_ans']
+            sa = content['stu_ans']
+            mf = content['model']
+        except:
+            pass
         grade = model(q,ra,sa,mf)
-        return {'quest':q,'ref_ans':ra,'stu_ans':sa,'grade':grade}
+        return {'quest':q,'ref_ans':ra,'stu_ans':sa,'mtype':mf,'grade':grade}
 
 api.add_resource(ASAGGrader, '/')
 
