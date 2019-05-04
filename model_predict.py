@@ -10,4 +10,4 @@ def model(q,ra,sa,filename):
     # get the model prediction
     # pred = loaded_model.predict(inp_feat)
 
-    return "Incorrect"
+    return "Correct"
