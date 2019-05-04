@@ -10,7 +10,7 @@ CORS(app)
 class ASAGGrader(Resource):
     def post(self):
         q,ra,sa,mf = "","","",""
-        content = request.get_json()
+        content = request.get_json(force=True)
         try:
             q = content['quest']
             ra = content['ref_ans']
@@ -19,7 +19,7 @@ class ASAGGrader(Resource):
         except:
             pass
         grade = model(q,ra,sa,mf)
-        return {'quest':q,'ref_ans':ra,'stu_ans':sa,'mtype':mf,'grade':grade}
+        return jsonify('quest'=q,'ref_ans'=ra,'stu_ans'=sa,'mtype'=mf,'grade'=grade)
 
 api.add_resource(ASAGGrader, '/')
 
