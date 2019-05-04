@@ -19,7 +19,7 @@ class ASAGGrader(Resource):
         except:
             pass
         grade = model(q,ra,sa,mf)
-        return jsonify('quest'=q,'ref_ans'=ra,'stu_ans'=sa,'mtype'=mf,'grade'=grade)
+        return {'quest':q,'ref_ans':ra,'stu_ans':sa,'mtype':mf,'grade':grade}
 
 api.add_resource(ASAGGrader, '/')
 
