@@ -31,7 +31,7 @@ def model(q,ra,sa,mtype):
     ibm_feat = ['precision','recall','F1_score']
     q_tags = ['how_flag','what_flag','why_flag','who_flag','which_flag','when_flag','where_flag','whom_flag']
 
-    features  = q_basic + a_basic + q_pos_basic + q_pos_adv + a_pos_adv + similarity + rouge1 + rouge2 + rougel + new_pos1  + ibm_feat + q_tags
+    features  = q_basic + a_basic + q_pos_basic + q_pos_adv + a_pos_basic + a_pos_adv + similarity + rouge1 + rouge2 + rougel + new_pos1  + ibm_feat + q_tags
 
     columns = ['question','ref_answer','stu_answer']
 
