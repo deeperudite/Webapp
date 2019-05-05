@@ -8,7 +8,6 @@ import string
 import zipfile
 from sklearn.feature_extraction.text import TfidfVectorizer
 import nltk
-nltk.download('all')
 from nltk.tokenize import word_tokenize,sent_tokenize
 from nltk import pos_tag
 from nltk.corpus import stopwords
