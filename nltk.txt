@@ -1,1 +1,11 @@
-all
+wordnet
+pros_cons
+universal_tagset
+punkt
+averaged_perceptron_tagger
+snowball_data
+porter_test
+vader_lexicon
+treebank
+dependency_treebank
+
