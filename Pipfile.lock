@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "8d7f7505ff9f737eaccaf2af07289f524dc313fa5b924d7b2feb6d5b1d865aa6"
+            "sha256": "1493ced34a9cf33de72d6fc2d14f972e5c3c0cb5daa2e651d2fc26675729eda6"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -159,6 +159,14 @@
             "index": "pypi",
             "version": "==2019.1"
         },
+        "rouge": {
+            "hashes": [
+                "sha256:96948febb4506c5a203c47d55e5f83b82baeb230ff84ae8fcf15331ee0094fc8",
+                "sha256:f131c13661f96a048df4d372d83598a65efbbfaeafed491ee96313cc6aa7364b"
+            ],
+            "index": "pypi",
+            "version": "==0.3.1"
+        },
         "scikit-learn": {
             "hashes": [
                 "sha256:018f470a7e685767d84ce6fac87af59e064e87ec3cea71eaf12646f9538e293d",
@@ -241,6 +249,14 @@
             ],
             "index": "pypi",
             "version": "==0.0"
+        },
+        "textblob": {
+            "hashes": [
+                "sha256:7ff3c00cb5a85a30132ee6768b8c68cb2b9d76432fec18cd1b3ffe2f8594ec8c",
+                "sha256:b0eafd8b129c9b196c8128056caed891d64b7fa20ba570e1fcde438f4f7dd312"
+            ],
+            "index": "pypi",
+            "version": "==0.15.3"
         },
         "werkzeug": {
             "hashes": [

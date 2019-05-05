@@ -10,8 +10,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.tokenize import word_tokenize,sent_tokenize
 from nltk import pos_tag
 from nltk.corpus import stopwords
-from nltk.tokenize import TweetTokenizer
-from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.stem.porter import PorterStemmer
 porter = PorterStemmer()
@@ -20,7 +18,6 @@ lemmatizer = WordNetLemmatizer()
 
 !pip3 install rouge==0.3.1 
 from rouge import Rouge
-!pip3 install textblob
 from textblob import TextBlob
 
 def clean(df,tasks,columns):
