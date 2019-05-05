@@ -15,14 +15,6 @@ class ASAGGrader(Resource):
         parser.add_argument('stu_ans',type=str)
         parser.add_argument('model',type=str)
         q,ra,sa,mf = "","","",""
-        # content = request.get_json(force=True)
-        # try:
-        #     q = content['quest']
-        #     ra = content['ref_ans']
-        #     sa = content['stu_ans']
-        #     mf = content['model']
-        # except:
-        #     pass
         args = parser.parse_args()
         q = args['quest']
         ra = args['ref_ans']
