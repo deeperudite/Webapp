@@ -144,6 +144,13 @@ def get_Jaccard(df,columns):
   return df
 
 columns = ['question','ref_answer','stu_answer']
+
+
+# q = "How are you?"
+# r = "I am good."
+# s = "Dying bro. Ellame reject bro."
+# data = pd.DataFrame([[q,r,s]],columns = columns)
+
 temp = get_basic_features(data,columns)
 
 cleaning_tasks = ['lemma','num']
