@@ -78,5 +78,5 @@ def model(q,ra,sa,mtype):
             return "Incorrect"
     else:
         loaded_model = joblib.load("regressor.sav")
-        pred = loaded_model.predict(inp_feat).ravel()
+        pred = loaded_model.predict(inp_feat).ravel()[0]
         return str(pred)
