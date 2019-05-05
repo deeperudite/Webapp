@@ -1,5 +1,5 @@
 from sklearn.externals import joblib
-import preprocessing
+import preprocessing as pp
 import numpy as np
 import pandas as pd
 
@@ -35,20 +35,20 @@ def model(q,ra,sa,mtype):
 
     columns = ['question','ref_answer','stu_answer']
 
-    temp = get_basic_features(data,columns)
+    temp = pp.get_basic_features(data,columns)
 
     cleaning_tasks = ['lemma','num']
-    temp = clean(temp,cleaning_tasks,columns)
+    temp = pp.clean(temp,cleaning_tasks,columns)
 
-    temp = get_basic_POS(temp,columns)
-    temp = get_advanced_POS(temp,columns)
+    temp = pp.get_basic_POS(temp,columns)
+    temp = pp.get_advanced_POS(temp,columns)
 
     sim_columns = ['ref_answer','stu_answer']
-    temp = get_Jaccard(temp,sim_columns)
+    temp = pp.get_Jaccard(temp,sim_columns)
 
     temp['bm25'] = 0
 
-    scores = get_Rogue(temp,sim_columns)
+    scores = pp.get_Rogue(temp,sim_columns)
     r1 = pd.DataFrame(scores)['rouge-1'].apply(pd.Series)
     r2 = pd.DataFrame(scores)['rouge-2'].apply(pd.Series)
     r3 = pd.DataFrame(scores)['rouge-l'].apply(pd.Series)
@@ -56,14 +56,14 @@ def model(q,ra,sa,mtype):
     r.columns = ['r1_f','r1_p','r1_r','r2_f','r2_p','r2_r','rlcs_f','rlcs_p','rlcs_r']
     temp = pd.concat([temp,r],axis = 1)
 
-    temp = get_new_POS1(temp)
-    temp = get_new_POS2(temp)
+    temp = pp.get_new_POS1(temp)
+    temp = pp.get_new_POS2(temp)
 
     temp['precision'] = 0
     temp['recall'] = 0
     temp['F1_score'] = 0
 
-    temp = get_question_tags(temp)
+    temp = pp.get_question_tags(temp)
 
     temp.drop(['question','ref_answer','stu_answer'], axis=1, inplace=True)
     temp = temp[features]
