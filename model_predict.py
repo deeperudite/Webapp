@@ -7,6 +7,8 @@ def model(q,ra,sa,mtype):
     #
     # # load the saved model and return prediction
     # pred = ""
+    data = pd.DataFrame([(q,ra,sa)],columns=['question','ref_answer','stu_answer'])
+
     q_basic = ['q_word_count','q_char_count','q_avg_word']
     a_basic = ['r_word_count','r_char_count','r_avg_word','s_word_count','s_char_count','s_avg_word']
     q_pos_basic = ['q_nouns','q_adjectives','q_verbs']

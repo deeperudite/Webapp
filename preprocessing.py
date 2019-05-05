@@ -1,32 +1,22 @@
 # -*- coding: utf-8 -*-
 import os
-from google.colab import drive
-import tensorflow as tf
 import pandas as pd
 import numpy as np
 import string
-import zipfile
-from sklearn.feature_extraction.text import TfidfVectorizer
-import nltk
-nltk.download('all')
 from nltk.tokenize import word_tokenize,sent_tokenize
 from nltk import pos_tag
 from nltk.corpus import stopwords
-from nltk.tokenize import TweetTokenizer
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.stem.porter import PorterStemmer
 porter = PorterStemmer()
 stop_words = set(stopwords.words('english'))
 lemmatizer = WordNetLemmatizer()
-
-!pip3 install rouge==0.3.1 
 from rouge import Rouge
-!pip3 install textblob
 from textblob import TextBlob
 
 def clean(df,tasks,columns):
-  
+
   for column in columns:
       #Lowercase conversion
       df[column] = df[column].apply(lambda x: x.lower())
@@ -67,7 +57,7 @@ def clean(df,tasks,columns):
         df[column] = df[column].apply(lambda x: " ".join([lemmatizer.lemmatize(word,pos='v') for word in x.split()]))
         print(column+": Root words Lemmatized")
 
-    
+
   print("Null values:",df.isnull().values.any())
   #print(df.head())
   return df
@@ -78,7 +68,7 @@ def avg_word(sentence):
 
 
 def get_basic_features(df,columns):
-  
+
   for column in columns:
     df[column[0]+'_word_count'] = df[column].apply(lambda x: len(str(x).split(" ")))
     print(column+"Word Count Done")
@@ -98,18 +88,18 @@ def tag_part_of_speech(text):
     adjective_count = len([w for w in pos_list if w[1] in ('JJ','JJR','JJS')])
     verb_count = len([w for w in pos_list if w[1] in ('VB','VBD','VBG','VBN','VBP','VBZ')])
     return[noun_count, adjective_count, verb_count]
-  
+
 def get_basic_POS(df,columns):
-    
-    for column in columns: 
+
+    for column in columns:
       print("Generating Basic POS Features for "+ column)
       df[column[0]+'_nouns'], df[column[0]+'_adjectives'], df[column[0]+'_verbs'] = zip(*df[column].apply(lambda comment: tag_part_of_speech(comment)))
-      
-    return df  
-  
+
+    return df
+
 def get_advanced_POS(df,columns):
-    
-    for column in columns: 
+
+    for column in columns:
       print("Generating Advanced POS Features for "+ column)
       df[column[0]+'_nouns_vs_length'] = df[column[0]+'_nouns'] / df[column[0]+'_char_count']
       df[column[0]+'_adjectives_vs_length'] = df[column[0]+'_adjectives'] / df[column[0]+'_char_count']
@@ -117,13 +107,13 @@ def get_advanced_POS(df,columns):
       df[column[0]+'_nouns_vs_words'] = df[column[0]+'_nouns'] / df[column[0]+'_word_count']
       df[column[0]+'_adjectives_vs_words'] = df[column[0]+'_adjectives'] / df[column[0]+'_word_count']
       df[column[0]+'_verbs_vs_words'] = df[column[0]+'_verbs'] / df[column[0]+'_word_count']
-      
+
     return df
 
 def get_Jaccard(df,columns):
   df['Jaccard'] = df['q_avg_word']
   for i in df.index:
-    a = set(df[columns[0]][i].split()) 
+    a = set(df[columns[0]][i].split())
     b = set(df[columns[1]][i].split())
     c = a.intersection(b)
     df['Jaccard'][i] = float(len(c)) / (len(a) + len(b) - len(c))
