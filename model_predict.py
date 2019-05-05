@@ -1,6 +1,7 @@
 from sklearn.externals import joblib
 import preprocessing
 import numpy as np
+import pandas as pd
 
 def model(q,ra,sa,mtype):
     # # add preprocessing calls here
