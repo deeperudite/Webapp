@@ -80,4 +80,3 @@ def model(q,ra,sa,mtype):
         loaded_model = joblib.load("regressor.sav")
         pred = loaded_model.predict(inp_feat).ravel()
         return str(pred)
-    return "Correct"
